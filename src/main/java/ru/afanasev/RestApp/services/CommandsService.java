@@ -20,8 +20,20 @@ public class CommandsService {
 
     public List<Command> findAll() { return commandsRepository.findAll(); }
 
-    public Command findOne(int id) {
+    @Transactional
+    public void save(Command command) {
+        commandsRepository.save(command);
+    }
+
+
+
+
+
+/*      TODO
+        Поиск по id, но он не нужен, позже переделаю в другой метод.
+        public Command findOne(int id) {
         Optional<Command> foundCommand = commandsRepository.findById(id);
         return foundCommand.orElse(null);
-    }
+    }*/
+
 }
