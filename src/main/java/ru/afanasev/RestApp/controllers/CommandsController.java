@@ -11,6 +11,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.afanasev.RestApp.dto.CommandDTO;
 import ru.afanasev.RestApp.models.Command;
+import ru.afanasev.RestApp.models.Player;
 import ru.afanasev.RestApp.services.CommandsService;
 import ru.afanasev.RestApp.util.CommandErrorResponse;
 import ru.afanasev.RestApp.util.CommandNotCreatedException;
@@ -36,13 +37,17 @@ public class CommandsController {
 
     //Я решил сделать пункт задания "Получить всех участников конкретной команды" по id команды
     @GetMapping("/{id}")
-    public List<Command> getPlayersByCommandId(@PathVariable("id") int id, Model model) {
+    public List<Player> getPlayersByCommandId(@PathVariable("id") int id, Model model) {
         model.addAttribute("command", commandsService.findOne(id));
         model.addAttribute("players", commandsService.getPlayersByCommandId(id));
 
         return commandsService.getPlayersByCommandId(id);
     }
 
+    @GetMapping("/command/{id}")
+    public CommandDTO getCity(@PathVariable("id") int id) {
+        return convertToCommandDTO(commandsService.findOne(id));
+    }
 
     @PostMapping("/create")
     public ResponseEntity<HttpStatus> create(@RequestBody @Valid CommandDTO commandDTO, BindingResult bindingResult) {
