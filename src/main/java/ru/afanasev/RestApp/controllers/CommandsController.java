@@ -35,7 +35,7 @@ public class CommandsController {
   //  public List<Command> getCommands() { return commandsService.findAll(); }
 
     //Я решил сделать пункт задания "Получить всех участников конкретной команды" по id команды
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public List<Command> getPlayersByCommandId(@PathVariable("id") int id, Model model) {
         model.addAttribute("command", commandsService.findOne(id));
         model.addAttribute("players", commandsService.getPlayersByCommandId(id));
@@ -44,7 +44,7 @@ public class CommandsController {
     }
 
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<HttpStatus> create(@RequestBody @Valid CommandDTO commandDTO, BindingResult bindingResult) {
             if (bindingResult.hasErrors()) {
                 StringBuilder errorMsg = new StringBuilder();
