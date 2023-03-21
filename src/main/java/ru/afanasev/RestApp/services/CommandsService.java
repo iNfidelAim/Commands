@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.afanasev.RestApp.models.Command;
 import ru.afanasev.RestApp.models.Player;
 import ru.afanasev.RestApp.repositories.CommandsRepository;
+import ru.afanasev.RestApp.util.CommandNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +26,7 @@ public class CommandsService {
 
     public Command findOne(int id) {
         Optional<Command> foundCity = commandsRepository.findById(id);
-      //  return  foundCity.orElseThrow(CityNotFoundException::new);
+        return  foundCity.orElseThrow(CommandNotFoundException::new);
     }
 
     @Transactional
