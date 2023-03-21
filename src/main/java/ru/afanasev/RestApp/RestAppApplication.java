@@ -13,12 +13,12 @@ public class RestAppApplication {
 	}
 
 	@Bean
-	public ModelMapper modelMapperCity() {
+	public ModelMapper modelMapperCommand() {
 		return new ModelMapper();
 	}
 
 	@Bean
-	public ModelMapper modelMapperAttraction() {
+	public ModelMapper modelMapperPlayer() {
 		return new ModelMapper();
 	}
 

@@ -8,13 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import ru.afanasev.RestApp.dto.CommandDTO;
 import ru.afanasev.RestApp.dto.PlayerDTO;
 import ru.afanasev.RestApp.models.Player;
 import ru.afanasev.RestApp.repositories.PlayersRepository;
 import ru.afanasev.RestApp.services.CommandsService;
 import ru.afanasev.RestApp.services.PlayersService;
-import ru.afanasev.RestApp.util.CommandNotCreatedException;
 import ru.afanasev.RestApp.util.PlayerErrorResponse;
 import ru.afanasev.RestApp.util.PlayerNotCreatedException;
 
@@ -31,10 +29,10 @@ public class PlayersController {
 
     @Autowired
     public PlayersController(PlayersService playersService, CommandsService commandsService,
-                             PlayersRepository playersRepository, ModelMapper modelMapper) {
+                             PlayersRepository playersRepository, ModelMapper modelMapperPlayer) {
         this.playersService = playersService;
         this.commandsService = commandsService;
-        this.modelMapper = modelMapper;
+        this.modelMapper = modelMapperPlayer;
     }
 
     @PostMapping("/create")
@@ -50,7 +48,7 @@ public class PlayersController {
             }
             throw new PlayerNotCreatedException(errorMsg.toString());
         }
-        playersService.save(convertToPlayer(playerDTO).getOwner());
+        commandsService.save(convertToPlayer(playerDTO).getOwner());
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
