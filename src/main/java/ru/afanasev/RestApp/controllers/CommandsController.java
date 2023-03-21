@@ -32,8 +32,10 @@ public class CommandsController {
         this.modelMapper = modelMapperCommand;
     }
 
-  //  @GetMapping()
-  //  public List<Command> getCommands() { return commandsService.findAll(); }
+    @GetMapping()
+    public String index(Model model) {
+        return model.addAttribute("commands", commandsService.findAll()).toString();
+    }
 
     //Я решил сделать пункт задания "Получить всех участников конкретной команды" по id команды
     @GetMapping("/{id}")
@@ -45,7 +47,7 @@ public class CommandsController {
     }
 
     @GetMapping("/command/{id}")
-    public CommandDTO getCity(@PathVariable("id") int id) {
+    public CommandDTO getCommand(@PathVariable("id") int id) {
         return convertToCommandDTO(commandsService.findOne(id));
     }
 
@@ -79,7 +81,7 @@ public class CommandsController {
     public String update(@ModelAttribute("command") @Valid Command command, BindingResult bindingResult,
                          @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
-            return "cities/edit";
+            return "commands/edit";
 
         commandsService.update(id, command);
         return "redirect:/commands";
