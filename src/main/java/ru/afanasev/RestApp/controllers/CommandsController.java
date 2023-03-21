@@ -1,6 +1,7 @@
 package ru.afanasev.RestApp.controllers;
 
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,12 @@ public class CommandsController {
 
     private final CommandsService commandsService;
 
+
     @Autowired
-    public CommandsController(CommandsService commandsService) { this.commandsService = commandsService; }
+    public CommandsController(CommandsService commandsService) {
+        this.commandsService = commandsService;
+
+    }
 
     @GetMapping()
     public List<Command> getCommands() { return commandsService.findAll(); }

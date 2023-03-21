@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -13,7 +14,7 @@ import java.util.Date;
 public class Command {
 
     @Id
-    @Column
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -30,6 +31,9 @@ public class Command {
     @NotEmpty(message = "Необходимо ввести дату в формате 2000-01-01 (Год-месяц-число)")
     @Column(name = "date_of_build")
     private Date dateOfBuild;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Player> players;
 
     public Command() {
     }
@@ -56,4 +60,8 @@ public class Command {
     public Date getDateOfBuild() { return dateOfBuild; }
 
     public void setDateOfBuild(Date dateOfBuild) { this.dateOfBuild = dateOfBuild; }
+
+    public List<Player> getPlayers() { return players; }
+
+    public void setPlayers(List<Player> players) { this.players = players; }
 }
