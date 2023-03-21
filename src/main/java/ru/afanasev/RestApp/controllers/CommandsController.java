@@ -5,9 +5,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import ru.afanasev.RestApp.dto.CommandDTO;
 import ru.afanasev.RestApp.models.Command;
 import ru.afanasev.RestApp.services.CommandsService;
 import ru.afanasev.RestApp.util.CommandErrorResponse;
@@ -21,22 +23,31 @@ import java.util.List;
 public class CommandsController {
 
     private final CommandsService commandsService;
-
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public CommandsController(CommandsService commandsService) {
+    public CommandsController(CommandsService commandsService, ModelMapper modelMapperCommand) {
         this.commandsService = commandsService;
-
+        this.modelMapper = modelMapperCommand;
     }
 
-    @GetMapping()
-    public List<Command> getCommands() { return commandsService.findAll(); }
+  //  @GetMapping()
+  //  public List<Command> getCommands() { return commandsService.findAll(); }
+
+    //Я решил сделать пункт задания "Получить всех участников конкретной команды" по id команды
+    @GetMapping("{id}")
+    public List<Command> getPlayersByCommandId(@PathVariable("id") int id, Model model) {
+        model.addAttribute("command", commandsService.findOne(id));
+        model.addAttribute("players", commandsService.getPlayersByCommandId(id));
+
+        return commandsService.getPlayersByCommandId(id);
+    }
+
 
     @PostMapping
-    public ResponseEntity<HttpStatus> create(@RequestBody @Valid Command command, BindingResult bindingResult) {
+    public ResponseEntity<HttpStatus> create(@RequestBody @Valid CommandDTO commandDTO, BindingResult bindingResult) {
             if (bindingResult.hasErrors()) {
                 StringBuilder errorMsg = new StringBuilder();
-
                 List<FieldError> errors = bindingResult.getFieldErrors();
                 for(FieldError error : errors) {
                     errorMsg.append(error.getField())
@@ -46,7 +57,7 @@ public class CommandsController {
                 throw new CommandNotCreatedException(errorMsg.toString());
             }
 
-            commandsService.save(command);
+            commandsService.save(convertToCommand(commandDTO));
             return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -57,5 +68,29 @@ public class CommandsController {
                 System.currentTimeMillis()
         );
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("command") @Valid Command command, BindingResult bindingResult,
+                         @PathVariable("id") int id) {
+        if (bindingResult.hasErrors())
+            return "cities/edit";
+
+        commandsService.update(id, command);
+        return "redirect:/commands";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id) {
+        commandsService.delete(id);
+        return "Удалено";
+    }
+
+    private Command convertToCommand(CommandDTO commandDTO) {
+        return modelMapper.map(commandDTO, Command.class);
+    }
+
+    private CommandDTO convertToCommandDTO(Command command) {
+        return modelMapper.map(command, CommandDTO.class);
     }
 }
