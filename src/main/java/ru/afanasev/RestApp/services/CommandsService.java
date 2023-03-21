@@ -24,6 +24,9 @@ public class CommandsService {
 
     public List<Command> findAll() { return commandsRepository.findAll(); }
 
+  //  public List<Command> findAll(String sportType) { return commandsRepository.findAll(); }
+
+
     public Command findOne(int id) {
         Optional<Command> foundCity = commandsRepository.findById(id);
         return  foundCity.orElseThrow(CommandNotFoundException::new);
@@ -48,10 +51,6 @@ public class CommandsService {
         commandsRepository.deleteById(id);
     }
 
-    public Optional<Command> getCommandByCommandName(String commandName) {
-        return commandsRepository.findByCommandName(commandName);
-    }
-
     public List<Player> getPlayersByCommandId(int id) {
         Optional<Command> command = commandsRepository.findById(id);
 
@@ -64,5 +63,5 @@ public class CommandsService {
 
         }
     }
-
 }
+

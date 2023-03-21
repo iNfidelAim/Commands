@@ -46,6 +46,14 @@ public class CommandsController {
         return commandsService.getPlayersByCommandId(id);
     }
 
+ /*   @GetMapping("/{sportType}")
+    public List<Player> getPlayersByCommandSportType(@PathVariable("sportType") String sportType, Model model) {
+        model.addAttribute("command", commandsService.findAll(sportType));
+        model.addAttribute("players", commandsService.getPlayersByCommandSportType(sportType));
+
+        return commandsService.getPlayersByCommandSportType(sportType);
+    }
+*/
     @GetMapping("/command/{id}")
     public CommandDTO getCommand(@PathVariable("id") int id) {
         return convertToCommandDTO(commandsService.findOne(id));

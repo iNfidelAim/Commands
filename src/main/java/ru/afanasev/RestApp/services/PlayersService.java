@@ -7,9 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.afanasev.RestApp.models.Player;
 import ru.afanasev.RestApp.repositories.PlayersRepository;
 
-import java.util.List;
-import java.util.Optional;
-
 
 @Service
 @Transactional(readOnly = true)
@@ -40,10 +37,6 @@ public class PlayersService {
     @Transactional
     public void delete(int id) {
         playersRepository.deleteById(id);
-    }
-
-    public Optional<Player> getPlayerByPlayerName(String playerName) {
-        return playersRepository.findByNameOfPlayer(playerName);
     }
 
 }
