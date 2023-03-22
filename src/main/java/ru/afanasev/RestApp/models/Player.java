@@ -32,6 +32,13 @@ public class Player {
     @Column(name = "secondname_of_player")
     private String secondnameOfPlayer;
 
+    //в задании есть пункт "Фильтрация по роли/позиции в команде", но вс сущности участники не было такого столбца
+    //поэтому я его добавил к участникам команды "Роль в команде"
+    @NotEmpty(message = "Роль участника команды не должна быть пустой")
+    @Size(min = 1, max = 100, message = "Роль участника должна содержать от 1 до 100 символов длиной")
+    @Column(name = "role_of_player")
+    private String roleOfPlayer;
+
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     @NotEmpty(message = "Необходимо ввести дату в формате 2000-01-01 (Год-месяц-число)")
     @Column(name = "birthday")

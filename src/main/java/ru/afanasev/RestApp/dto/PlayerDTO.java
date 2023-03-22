@@ -4,6 +4,7 @@ package ru.afanasev.RestApp.dto;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -22,6 +23,10 @@ public class PlayerDTO {
     @Size(min = 2, max = 100, message = "Отчество участника должно быть от 2 до 100 символов длиной")
     private String secondnameOfPlayer;
 
+    @NotEmpty(message = "Роль участника команды не должна быть пустой")
+    @Size(min = 1, max = 100, message = "Роль участника должна содержать от 1 до 100 символов длиной")
+    private String roleOfPlayer;
+
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     @NotEmpty(message = "Необходимо ввести дату в формате 2000-01-01 (Год-месяц-число)")
     private Date dateOfBirthday;
@@ -37,6 +42,10 @@ public class PlayerDTO {
     public String getSecondnameOfPlayer() { return secondnameOfPlayer; }
 
     public void setSecondnameOfPlayer(String secondnameOfPlayer) { this.secondnameOfPlayer = secondnameOfPlayer; }
+
+    public String getRoleOfPlayer() { return roleOfPlayer; }
+
+    public void setRoleOfPlayer(String roleOfPlayer) { this.roleOfPlayer = roleOfPlayer; }
 
     public Date getDateOfBirthday() { return dateOfBirthday; }
 

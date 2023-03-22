@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface CommandsRepository extends JpaRepository<Command, Integer> {
 
-    Optional<Command> findByCommandName(String commandName);
+  //  Optional<Command> findByCommandName(String commandName);
 }
