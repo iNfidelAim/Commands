@@ -53,6 +53,16 @@ public class CommandsController {
         return commandsService.findAll();
     }
 
+    @GetMapping("/{sport_type}")
+    List<Command> findBySportTypeOrderBySportType(@PathVariable("sport_type") Model model) {
+        model.addAttribute("commands", commandsService.findAll());
+
+        return commandsService.findAll();
+    }
+
+
+
+
     @GetMapping("/command/{id}")
     public CommandDTO getCommand(@PathVariable("id") int id) {
         return convertToCommandDTO(commandsService.findOne(id));

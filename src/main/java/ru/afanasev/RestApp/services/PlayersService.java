@@ -1,13 +1,11 @@
 package ru.afanasev.RestApp.services;
 
 
-import org.hibernate.Hibernate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.afanasev.RestApp.models.Command;
 import ru.afanasev.RestApp.models.Player;
-import ru.afanasev.RestApp.repositories.CommandsRepository;
 import ru.afanasev.RestApp.repositories.PlayersRepository;
 
 import java.util.List;
@@ -52,7 +50,4 @@ public class PlayersService {
 
 
 }
-
-
-
 
