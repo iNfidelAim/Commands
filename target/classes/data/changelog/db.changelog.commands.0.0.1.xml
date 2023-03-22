@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+
+    <changeSet id="1" author="ruslan">
+        <createTable tableName="command">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+            <column name="command_name" type="varchar(100)" ></column>
+            <column name="sport_type" type="varchar(100)" ></column>
+            <column name="date_of_build" type="date" ></column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="2" author="Ruslan">
+        <insert tableName="command">
+            <column name="id" value="1"></column>
+            <column name="command_name" value="Team Spirit" ></column>
+            <column name="sport_type" value="Dota 2" ></column>
+            <column name="date_of_build" value="2015-01-01" ></column>
+        </insert>
+        <insert tableName="command">
+            <column name="id" value="2"></column>
+            <column name="command_name" value="Virtus pro" ></column>
+            <column name="sport_type" value="CS:GO" ></column>
+            <column name="date_of_build" value="2003-01-01" ></column>
+        </insert>
+        <insert tableName="command">
+            <column name="id" value="3"></column>
+            <column name="command_name" value="Natus Vincere" ></column>
+            <column name="sport_type" value="Valorant" ></column>
+            <column name="date_of_build" value="2021-01-01" ></column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3" author="ruslan">
+        <createTable tableName="player">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"></constraints>
+            </column>
+
+            <column name="surname_of_player" type="varchar(100)" ></column>
+            <column name="name_of_player" type="varchar(100)" ></column>
+            <column name="secondname_of_player" type="varchar(100)" ></column>
+            <column name="role_of_player" type="varchar" ></column>
+            <column name="birthday" type="date" ></column>
+            <column name="command_id" type="int" ></column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="4" author="Ruslan">
+        <insert tableName="player">
+            <column name="surname_of_player" value="Mulyarchuk" ></column>
+            <column name="name_of_player" value="Iliya" ></column>
+            <column name="secondname_of_player" value="Yatoro" ></column>
+            <column name="role_of_player" value="Carry" ></column>
+            <column name="birthday" value="19.12.2020" ></column>
+            <column name="command_id" value="1" ></column>
+        </insert>
+        <insert tableName="player">
+            <column name="surname_of_player" value="Sigitov" ></column>
+            <column name="name_of_player" value="Denis" ></column>
+            <column name="secondname_of_player" value="Lari" ></column>
+            <column name="role_of_player" value="Middle" ></column>
+            <column name="birthday" value="08.12.2022" ></column>
+            <column name="command_id" value="1" ></column>
+        </insert>
+        <insert tableName="player">
+            <column name="surname_of_player" value="Ali" ></column>
+            <column name="name_of_player" value="Jami" ></column>
+            <column name="secondname_of_player" value="Jame" ></column>
+            <column name="role_of_player" value="Rush" ></column>
+            <column name="birthday" value="1998-08-23" ></column>
+            <column name="command_id" value="2" ></column>
+        </insert>
+        <insert tableName="player">
+            <column name="surname_of_player" value="Golubev" ></column>
+            <column name="name_of_player" value="Alexey" ></column>
+            <column name="secondname_of_player" value="Qikert" ></column>
+            <column name="role_of_player" value="Sniper" ></column>
+            <column name="birthday" value="1999-01-01" ></column>
+            <column name="command_id" value="2" ></column>
+        </insert>
+        <insert tableName="player">
+            <column name="surname_of_player" value="Ilyushin" ></column>
+            <column name="name_of_player" value="Dmitriy" ></column>
+            <column name="secondname_of_player" value="SUYGETSU" ></column>
+            <column name="role_of_player" value="Tasher" ></column>
+            <column name="birthday" value="2020-12-03" ></column>
+            <column name="command_id" value="3" ></column>
+        </insert>
+        <insert tableName="player">
+            <column name="surname_of_player" value="Kiprskiy" ></column>
+            <column name="name_of_player" value="Andrey" ></column>
+            <column name="secondname_of_player" value="shao" ></column>
+            <column name="role_of_player" value="Killer" ></column>
+            <column name="birthday" value="2020-07-15" ></column>
+            <column name="command_id" value="3" ></column>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>
