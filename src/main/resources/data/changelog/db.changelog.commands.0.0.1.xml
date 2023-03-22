@@ -5,9 +5,9 @@
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xmlns:pro="http://www.liquibase.org/xml/ns/pro"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
-		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
-		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
 
     <changeSet id="1" author="ruslan">
@@ -22,7 +22,7 @@
     </changeSet>
 
 
-    <changeSet id="1" author="ruslan">
+    <changeSet id="2" author="Ruslan">
         <insert tableName="command">
             <column name="id" value="1"></column>
             <column name="command_name" value="Team Spirit" ></column>
@@ -43,7 +43,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="2" author="ruslan">
+    <changeSet id="3" author="ruslan">
         <createTable tableName="player">
             <column name="id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"></constraints>
@@ -59,7 +59,7 @@
     </changeSet>
 
 
-    <changeSet id="2" author="ruslan">
+    <changeSet id="4" author="Ruslan">
         <insert tableName="player">
             <column name="surname_of_player" value="Mulyarchuk" ></column>
             <column name="name_of_player" value="Iliya" ></column>
