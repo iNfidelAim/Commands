@@ -17,6 +17,7 @@ import ru.afanasev.RestApp.util.CommandErrorResponse;
 import ru.afanasev.RestApp.util.CommandNotCreatedException;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -46,14 +47,14 @@ public class CommandsController {
         return commandsService.getPlayersByCommandId(id);
     }
 
- /*   @GetMapping("/{sportType}")
-    public List<Player> getPlayersByCommandSportType(@PathVariable("sportType") String sportType, Model model) {
-        model.addAttribute("command", commandsService.findAll(sportType));
-        model.addAttribute("players", commandsService.getPlayersByCommandSportType(sportType));
 
-        return commandsService.getPlayersByCommandSportType(sportType);
+    @GetMapping("/{date_of_build}")
+    List<Command> findByDateOfBuildIsBetweenOrderByDateOfBuild(@PathVariable("date_of_build") Model model) {
+        model.addAttribute("commands", commandsService.findAll());
+
+        return commandsService.findAll();
     }
-*/
+
     @GetMapping("/command/{id}")
     public CommandDTO getCommand(@PathVariable("id") int id) {
         return convertToCommandDTO(commandsService.findOne(id));

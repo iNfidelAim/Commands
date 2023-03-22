@@ -9,6 +9,7 @@ import ru.afanasev.RestApp.models.Player;
 import ru.afanasev.RestApp.repositories.CommandsRepository;
 import ru.afanasev.RestApp.util.CommandNotFoundException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,13 +25,19 @@ public class CommandsService {
 
     public List<Command> findAll() { return commandsRepository.findAll(); }
 
-  //  public List<Command> findAll(String sportType) { return commandsRepository.findAll(); }
-
-
     public Command findOne(int id) {
-        Optional<Command> foundCity = commandsRepository.findById(id);
-        return  foundCity.orElseThrow(CommandNotFoundException::new);
+        Optional<Command> foundCommand = commandsRepository.findById(id);
+        return  foundCommand.orElseThrow(CommandNotFoundException::new);
     }
+
+    List<Command> findByDateOfBuildIsBetweenOrderByDateOfBuild(Date dateOfBuild, Date dateOfBuild2) {
+        return commandsRepository.findByDateOfBuildIsBetweenOrderByDateOfBuild(dateOfBuild, dateOfBuild2);
+    }
+
+    List<Command> findBySportTypeOrderBySportType(String sportType) {
+        return commandsRepository.findBySportTypeOrderBySportType(sportType);
+    }
+
 
     @Transactional
     public void save(Command command) {
