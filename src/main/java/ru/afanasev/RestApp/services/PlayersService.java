@@ -1,14 +1,17 @@
 package ru.afanasev.RestApp.services;
 
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.afanasev.RestApp.models.Command;
 import ru.afanasev.RestApp.models.Player;
+import ru.afanasev.RestApp.repositories.CommandsRepository;
 import ru.afanasev.RestApp.repositories.PlayersRepository;
 
 import java.util.List;
+
 
 
 @Service
@@ -17,17 +20,13 @@ public class PlayersService {
 
     private final PlayersRepository playersRepository;
 
+
     @Autowired
     public PlayersService(PlayersRepository playersRepository) {
         this.playersRepository = playersRepository;
     }
-
-
-    public List<Player> findByOwner(Command owner) {
-        return playersRepository.findByOwner(owner);
-    }
-
-    public  List<Player> findByRoleOfPlayer(Player roleOfPlayer) {
+    public List<Player> findAll() { return playersRepository.findAll(); }
+    public List<Player> findByRoleOfPlayer(String roleOfPlayer) {
         return playersRepository.findByRoleOfPlayer(roleOfPlayer);
     }
 
@@ -50,6 +49,7 @@ public class PlayersService {
     public void delete(int id) {
         playersRepository.deleteById(id);
     }
+
 
 }
 

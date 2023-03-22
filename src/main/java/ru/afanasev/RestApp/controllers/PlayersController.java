@@ -5,10 +5,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.afanasev.RestApp.dto.PlayerDTO;
+import ru.afanasev.RestApp.models.Command;
 import ru.afanasev.RestApp.models.Player;
 import ru.afanasev.RestApp.repositories.PlayersRepository;
 import ru.afanasev.RestApp.services.CommandsService;
@@ -34,6 +36,13 @@ public class PlayersController {
         this.commandsService = commandsService;
         this.modelMapper = modelMapperPlayer;
     }
+
+    @GetMapping("/{role}")
+    public List<Player> getPlayersByRoleOfPlayer(@PathVariable("role") String roleOfPlayer, Model model) {
+        model.addAttribute("players", playersService.findAll());
+        return playersService.findAll();
+    }
+
 
     @PostMapping("/create")
     public ResponseEntity<HttpStatus> create(@ModelAttribute("player") @Valid PlayerDTO playerDTO,
