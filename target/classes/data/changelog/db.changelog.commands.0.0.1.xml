@@ -22,7 +22,7 @@
     </changeSet>
 
 
-    <changeSet id="2" author="Ruslan">
+    <changeSet id="2" author="ruslan">
         <insert tableName="command">
             <column name="id" value="1"></column>
             <column name="command_name" value="Team Spirit" ></column>
@@ -59,7 +59,7 @@
     </changeSet>
 
 
-    <changeSet id="4" author="Ruslan">
+    <changeSet id="4" author="ruslan">
         <insert tableName="player">
             <column name="surname_of_player" value="Mulyarchuk" ></column>
             <column name="name_of_player" value="Iliya" ></column>
